@@ -1,0 +1,5 @@
+CREATE OR REPLACE FUNCTION current_date_fail(in_date DATE) RETURN VARCHAR2 IS
+  BEGIN
+    RETURN TRUNC(in_date);
+  END;
+/

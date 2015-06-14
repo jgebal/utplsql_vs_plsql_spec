@@ -1,0 +1,5 @@
+CREATE OR REPLACE FUNCTION current_date_(in_date DATE) RETURN DATE IS
+  BEGIN
+    RETURN TRUNC(in_date);
+  END;
+/
