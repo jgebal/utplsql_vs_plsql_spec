@@ -7,6 +7,15 @@ default:
   # host: localhost
   # port: 1521
 
+secondary:
+  username: tdd_test1
+  password: tdd_test1
+  database: xe
+
+different_user:
+  username: tdd_test2
+  password: tdd_test2
+  database: xe
 # Add other connection if needed.
 # You can access them with plsql(:other) where :other is connection name specified below.
 
