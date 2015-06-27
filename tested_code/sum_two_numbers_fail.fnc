@@ -1,0 +1,5 @@
+CREATE OR REPLACE FUNCTION sum_two_numbers(a NUMBER, b NUMBER) RETURN NUMBER IS
+  BEGIN
+    RETURN a + b + 1;
+  END;
+/

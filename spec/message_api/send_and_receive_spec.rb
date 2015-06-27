@@ -3,16 +3,16 @@ require_relative '../spec_helper'
 describe 'cross session communication package' do
 
   it 'allows receiving message sent in one session' do
-    a_message = [ 1, 'a message', Time.today ]
-    plsql.message_api.send_msg( *a_message )
-    expect( plsql.message_api.receive_msg.values ).to eq( a_message )
+    a_message = { p_number: 1, p_text: 'a message', p_date: Time.today }
+    plsql.message_api.send_msg( a_message )
+    expect( plsql.message_api.receive_msg ).to eq( a_message )
   end
 
   it 'allows sending and receiving message across different sessions' do
-    a_message = [ 1, 'a message', Time.today ]
-    plsql(:default).message_api.send_msg( *a_message )
+    message_values = [ 1, 'a message', Time.today ]
+    plsql(:default).message_api.send_msg( *message_values )
     received_values = plsql(:secondary).message_api.receive_msg.values
-    expect( received_values ).to eq( a_message )
+    expect( received_values ).to eq( message_values )
   end
 
   it 'allows sending and receiving message across sessions of different users' do
