@@ -36,7 +36,7 @@
           <username>tdd_test1</username>
           <password>tdd_test1</password>
           <!--<packageName>betwnstr</packageName>-->
-          <testSuiteName>All</testSuiteName>
+          <testSuiteName>ALL</testSuiteName>
         </configuration>
         <executions>
           <execution>
