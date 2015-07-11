@@ -3,8 +3,9 @@ require "ruby-plsql-spec"
 require "yaml"
 
 # create all connections specified in database.yml file
-database_config_file = File.expand_path('../database.yml', __FILE__)
-database_config = YAML.load(File.read(database_config_file))
+# database_config_file = File.expand_path('../database.yml', __FILE__)
+# database_config = YAML.load(File.read(database_config_file))
+database_config = YAML::load(ERB.new(IO.read(File.expand_path('../database.yml', __FILE__))).result)
 database_config = {} unless database_config.is_a?(Hash)
 database_connections = database_config.keys.map{|k| k.to_sym}
 
