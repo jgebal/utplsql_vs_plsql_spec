@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tsl.plsqltest</groupId>
+  <artifactId>plsqltest</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>PL SQL test project</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <version>1.3</version>
+
+        <dependencies>
+          <!-- specify the dependent jdbc driver here -->
+          <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>9.0.2.0.0</version>
+          </dependency>
+        </dependencies>
+
+        <!-- common configuration shared by all executions -->
+        <configuration>
+          <driver>oracle.jdbc.driver.OracleDriver</driver>
+          <url>jdbc:oracle:thin:@localhost:1521:xe</url>
+          <username>testing</username>
+          <password>testing</password>
+          <delimiter>/</delimiter>
+          <delimiterType>row</delimiterType>
+          <keepFormat>true</keepFormat>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>create-schema</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <orderFile>ascending</orderFile>
+              <delimiter>;</delimiter>
+              <delimiterType>normal</delimiterType>
+              <onError>continue</onError>
+              <keepFormat>false</keepFormat>
+              <fileset>
+                <basedir>src/main/sql</basedir>
+                <includes>
+                  <include>**/*.sql</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>create-plsql-packages</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <orderFile>ascending</orderFile>
+              <fileset>
+                <basedir>src/main/plsql</basedir>
+                <includes>
+                  <include>**/*.pks</include>
+                  <include>**/*.pkb</include>
+                  <include>**/*.sf</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>insert-data</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <orderFile>ascending</orderFile>
+              <delimiter>;</delimiter>
+              <delimiterType>normal</delimiterType>
+              <onError>continue</onError>
+              <keepFormat>false</keepFormat>
+              <fileset>
+                <basedir>src/main/resources/data</basedir>
+                <includes>
+                  <include>**/*.sql</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>create-plsql-test-packages</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <orderFile>ascending</orderFile>
+              <fileset>
+                <basedir>src/test/plsql</basedir>
+                <includes>
+                  <include>**/*.pks</include>
+                  <include>**/*.pkb</include>
+                  <include>**/*.sf</include>
+                  <include>**/*.sp</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.theserverlabs.maven.utplsql</groupId>
+        <artifactId>maven-utplsql-plugin</artifactId>
+        <version>1.0-SNAPSHOT</version>
+
+        <dependencies>
+          <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>9.0.2.0.0</version>
+          </dependency>
+        </dependencies>
+
+        <configuration>
+          <driver>oracle.jdbc.driver.OracleDriver</driver>
+          <url>jdbc:oracle:thin:@localhost:1521:xe</url>
+          <username>testing</username>
+          <password>testing</password>
+          <!--<packageName>betwnstr</packageName>-->
+          <testSuiteName>All</testSuiteName>
+        </configuration>
+        <executions>
+          <execution>
+            <id>run-plsql-test-packages</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+</project>
