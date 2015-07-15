@@ -22,12 +22,19 @@ describe 'get customer valid flag for existing data' do
     @tested_customer = plsql.customers.first
   end
 
-  it 'returns expected customer validity flag as a character' do
+  it 'returns expected customer validity flag' do
     expect( plsql.some_table_api.get_customer_valid_flag( @tested_customer[:customer_id] ) ).to eq @tested_customer[:customer_valid_flag]
   end
 
-  it 'returns expected customer validity flag as a character through assignment' do
+  it 'returns expected customer validity flag through assignment' do
     result = plsql.some_table_api.get_customer_valid_flag( @tested_customer[:customer_id] )
     expect( result ).to eq @tested_customer[:customer_valid_flag]
   end
+
+  it 'returns expected customer validity flag with type check' do
+    result = plsql.some_table_api.get_customer_valid_flag( @tested_customer[:customer_id] )
+    expect( result.class ).to eq(String)
+    expect( result ).to eq @tested_customer[:customer_valid_flag]
+  end
+
 end

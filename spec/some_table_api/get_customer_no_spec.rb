@@ -23,12 +23,18 @@ describe 'get customer number for existing data' do
     @tested_customer = plsql.customers.first
   end
 
-  it 'returns expected customer number as a numeric value' do
+  it 'returns expected customer number' do
     expect( plsql.some_table_api.get_customer_no( @tested_customer[:customer_id] ) ).to eq @tested_customer[:customer_no]
   end
 
-  it 'returns expected customer number as a numeric value through assignment' do
+  it 'returns expected customer number through assignment' do
     result = plsql.some_table_api.get_customer_no( @tested_customer[:customer_id] )
+    expect( result ).to eq @tested_customer[:customer_no]
+  end
+
+  it 'returns expected customer number with type check' do
+    result = plsql.some_table_api.get_customer_no( @tested_customer[:customer_id] )
+    expect( result.class ).to eq(Fixnum)
     expect( result ).to eq @tested_customer[:customer_no]
   end
 
