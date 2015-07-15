@@ -8,7 +8,7 @@ describe 'sum_two_numbers' do
 
   100.times do |i|
     it "returns #{i+10} for arguments #{i} and 10" do
-      expect( plsql.sum_two_numbers(i,10) ).to eq i+10
+      expect( plsql.sum_two_numbers_100_times(i,10) ).to eq i+10
     end
   end
 

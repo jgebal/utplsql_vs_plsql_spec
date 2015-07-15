@@ -22,7 +22,7 @@ IS
   IS
     BEGIN
       FOR i IN 1 .. 100 LOOP
-        utAssert.eq ( 'sum_two_numbers returns '||(i+10)||' for arguments '||i||' and 10', sum_two_numbers(i,10), (i+10) );
+        utAssert.eq ( 'sum_two_numbers returns '||(i+10)||' for arguments '||i||' and 10', sum_two_numbers_100_times(i,10), (i+10) );
       END LOOP;
     END;
 

@@ -1,5 +1,0 @@
-CREATE OR REPLACE FUNCTION sum_two_numbers_fail(a NUMBER, b NUMBER) RETURN VARCHAR2 IS
-  BEGIN
-    RETURN a + b;
-  END;
-/
