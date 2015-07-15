@@ -10,4 +10,9 @@ describe 'get customer number' do
     expect( plsql.some_table_api.get_customer_no(-1) ).to eq 123456
   end
 
+  it 'returns expected customer number as a numeric value through assignment' do
+    result = plsql.some_table_api.get_customer_no(-1)
+    expect( result ).to eq 123456
+  end
+
 end

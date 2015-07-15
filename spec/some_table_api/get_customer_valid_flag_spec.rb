@@ -10,4 +10,8 @@ describe 'get customer valid flag' do
     expect( plsql.some_table_api.get_customer_valid_flag(-1) ).to eq '1'
   end
 
+  it 'returns expected customer validity flag as a character through assignment' do
+    result = plsql.some_table_api.get_customer_valid_flag(-1)
+    expect( result ).to eq '1'
+  end
 end
