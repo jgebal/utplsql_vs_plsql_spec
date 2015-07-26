@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'get customer number' do
 
   before(:all) do

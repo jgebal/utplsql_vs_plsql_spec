@@ -1,5 +1,3 @@
-require_relative 'spec_helper'
-
 describe 'sum_two_numbers' do
 
   it 'returns 10 for arguments 5 and 5' do

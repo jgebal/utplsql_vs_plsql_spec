@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'cross session communication package' do
 
   it 'allows receiving message sent in one session' do

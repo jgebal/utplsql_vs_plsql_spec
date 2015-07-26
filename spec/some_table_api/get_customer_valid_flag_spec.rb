@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 describe 'get customer valid flag' do
 
   before(:all) do
