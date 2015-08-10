@@ -8,7 +8,7 @@ CREATE OR REPLACE PACKAGE BODY ut_some_table_api IS
 
   PROCEDURE ut_teardown IS
     BEGIN
-      NULL;
+      ROLLBACK;
     END;
 
   PROCEDURE ut_get_cust_no_fixed_types IS
