@@ -9,3 +9,6 @@ INSERT INTO customers_new SELECT * FROM customers;
 DROP TABLE customers;
 
 RENAME customers_new TO customers;
+
+ALTER TABLE customers ADD CONSTRAINT customers_pk PRIMARY KEY (customer_id) USING INDEX;
+

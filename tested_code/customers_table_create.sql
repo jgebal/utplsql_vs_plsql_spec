@@ -6,6 +6,7 @@ CREATE TABLE customers (
   customer_valid_flag VARCHAR2(1),
   CONSTRAINT chk_valid_flag CHECK (customer_valid_flag IN ('0','1'))
 );
+ALTER TABLE customers ADD CONSTRAINT customers_pk PRIMARY KEY (customer_id) USING INDEX;
 
 INSERT INTO customers VALUES (1, 123, '1');
 
