@@ -22,9 +22,7 @@ CREATE OR REPLACE PACKAGE BODY ut_some_table_api_new IS
       v_customer_no INTEGER := 1234;
     BEGIN
       utAssert.eq ( 'GIVEN customer does not exist', count_customers( v_customer_id, v_customer_no ), 0 );
-
       some_table_api.add_customer( v_customer_id, v_customer_no, '1' );
-
       utAssert.eq ( 'THEN customer is added', count_customers( v_customer_id, v_customer_no ), 1 );
       ROLLBACK;
     END;
@@ -34,10 +32,8 @@ CREATE OR REPLACE PACKAGE BODY ut_some_table_api_new IS
     v_customer_no INTEGER := 1234;
     BEGIN
       utAssert.eq ( 'GIVEN customer does not exist', count_customers( v_customer_id, v_customer_no ), 0 );
-
       some_table_api.add_customer( v_customer_id, v_customer_no, '1' );
       utAssert.eq ( 'WHEN customer is added', count_customers( v_customer_id, v_customer_no ), 1 );
-
       utAssert.throws(
           'THEN the add_customer fails on the same CUSTOMER_ID'
           ,'some_table_api.add_customer( '||v_customer_id||', '||(v_customer_no+1)||', ''1'' )'
@@ -51,10 +47,8 @@ CREATE OR REPLACE PACKAGE BODY ut_some_table_api_new IS
       v_customer_no INTEGER := 1234;
     BEGIN
       utAssert.eq ( 'GIVEN customer does not exist', count_customers( v_customer_id, v_customer_no ), 0 );
-
       some_table_api.add_customer( v_customer_id, v_customer_no, '1' );
       utAssert.eq ( 'WHEN customer is added', count_customers( v_customer_id, v_customer_no ), 1 );
-
       utAssert.throws(
           'THEN the add_customer fails on the same CUSTOMER_NO'
           ,'some_table_api.add_customer( '||(v_customer_id-1)||', '||v_customer_no||', ''1'' )'

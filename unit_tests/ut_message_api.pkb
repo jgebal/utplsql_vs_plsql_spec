@@ -13,14 +13,10 @@ CREATE OR REPLACE PACKAGE BODY ut_message_api IS
     l_num  NUMBER;
     l_txt  VARCHAR2(32767);
     l_date DATE;
-    l_num_expected  NUMBER;
-    l_txt_expected  VARCHAR2(32767);
-    l_date_expected DATE;
+    l_num_expected  NUMBER          := 1;
+    l_txt_expected  VARCHAR2(32767) := 'a message';
+    l_date_expected DATE            := TRUNC( SYSDATE );
     BEGIN
-      l_num_expected := 1;
-      l_txt_expected := 'a message';
-      l_date_expected := TRUNC( SYSDATE );
-
       message_api.send_msg( l_num_expected, l_txt_expected, l_date_expected );
 
       message_api.receive_msg( l_num, l_txt, l_date );

@@ -1,11 +1,4 @@
-describe 'cross session communication package' do
-
-  it 'allows receiving message sent in one session' do
-    a_message = { p_number: 1, p_text: 'a message', p_date: Time.today } #GIVEN
-    plsql.message_api.send_msg( a_message )                              #WHEN
-    expect( plsql.message_api.receive_msg ).to eq( a_message )           #THEN
-  end
-
+describe 'session communication package' do
   it 'allows sending and receiving message across different sessions' do
     message_values = [ 1, 'a message', Time.today ]                      #GIVEN
     plsql(:default).message_api.send_msg( *message_values )              #WHEN
