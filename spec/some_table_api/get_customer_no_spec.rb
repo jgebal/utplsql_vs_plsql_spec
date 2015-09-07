@@ -22,7 +22,9 @@ describe 'get customer number for existing data' do
   end
 
   it 'returns expected customer number' do
-    expect( plsql.some_table_api.get_customer_no( @tested_customer[:customer_id] ) ).to eq @tested_customer[:customer_no]
+    expect(
+        plsql.some_table_api.get_customer_no( @tested_customer[:customer_id] )
+    ).to eq @tested_customer[:customer_no]
   end
 
   it 'returns expected customer number through assignment' do

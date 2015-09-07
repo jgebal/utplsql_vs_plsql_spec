@@ -21,7 +21,9 @@ describe 'get customer valid flag for existing data' do
   end
 
   it 'returns expected customer validity flag' do
-    expect( plsql.some_table_api.get_customer_valid_flag( @tested_customer[:customer_id] ) ).to eq @tested_customer[:customer_valid_flag]
+    expect(
+        plsql.some_table_api.get_customer_valid_flag( @tested_customer[:customer_id] )
+    ).to eq @tested_customer[:customer_valid_flag]
   end
 
   it 'returns expected customer validity flag through assignment' do
