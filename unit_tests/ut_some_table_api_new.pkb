@@ -38,9 +38,11 @@ CREATE OR REPLACE PACKAGE BODY ut_some_table_api_new IS
       some_table_api.add_customer( v_customer_id, v_customer_no, '1' );
       utAssert.eq ( 'WHEN customer is added', count_customers( v_customer_id, v_customer_no ), 1 );
 
-      utAssert.throws('THEN the add_customer fails on the same CUSTOMER_ID'
-                    ,'some_table_api.add_customer( '||v_customer_id||', '||(v_customer_no+1)||', ''1'' )'
-                    ,'DUP_VAL_ON_INDEX');
+      utAssert.throws(
+          'THEN the add_customer fails on the same CUSTOMER_ID'
+          ,'some_table_api.add_customer( '||v_customer_id||', '||(v_customer_no+1)||', ''1'' )'
+          ,'DUP_VAL_ON_INDEX'
+      );
       ROLLBACK;
     END;
 
@@ -53,9 +55,11 @@ CREATE OR REPLACE PACKAGE BODY ut_some_table_api_new IS
       some_table_api.add_customer( v_customer_id, v_customer_no, '1' );
       utAssert.eq ( 'WHEN customer is added', count_customers( v_customer_id, v_customer_no ), 1 );
 
-      utAssert.throws('THEN the add_customer fails on the same CUSTOMER_NO'
-      ,'some_table_api.add_customer( '||(v_customer_id-1)||', '||v_customer_no||', ''1'' )'
-      ,-1);
+      utAssert.throws(
+          'THEN the add_customer fails on the same CUSTOMER_NO'
+          ,'some_table_api.add_customer( '||(v_customer_id-1)||', '||v_customer_no||', ''1'' )'
+          ,-1
+      );
       ROLLBACK;
     END;
 END;
