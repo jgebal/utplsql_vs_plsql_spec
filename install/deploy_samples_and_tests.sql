@@ -2,6 +2,9 @@
 
 @@../tested_code/message_api.pkb
 @@../tested_code/message_api.pks
+@@../tested_code/message_api_with_rec.pks
+@@../tested_code/message_api_with_rec.pkb
+@@../tested_code/message_api.pks
 --@@../tested_code/message_api_fail.pkb
 --@@../tested_code/message_api_fail.pks
 @@../tested_code/sum_two_numbers.fnc
@@ -11,6 +14,8 @@
 
 @@../unit_tests/ut_message_api.pks
 @@../unit_tests/ut_message_api.pkb
+@@../unit_tests/message_api_with_rec.pks
+@@../unit_tests/message_api_with_rec.pkb
 @@../unit_tests/ut_sum_two_numbers.pks
 @@../unit_tests/ut_sum_two_numbers.pkb
 @@../unit_tests/ut_some_table_api.pks
